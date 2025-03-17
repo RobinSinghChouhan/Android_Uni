@@ -22,9 +22,21 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.layouts.ui.theme.LayoutsTheme
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Delete
+import androidx.compose.material3.Button
 import androidx.compose.material3.ElevatedButton
+import androidx.compose.material3.Icon
+import androidx.compose.material3.OutlinedTextField
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateListOf
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.sp
 
@@ -35,8 +47,84 @@ class MainActivity : ComponentActivity() {
         setContent {
             LayoutsTheme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    SeasonScreen(modifier = Modifier.padding(innerPadding))
+//                    SeasonScreen(modifier = Modifier.padding(innerPadding))
+                LazyColumnScreen(Modifier.padding(innerPadding))
                 }
+            }
+        }
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+fun LazyColumnScreenPreview()
+{
+    LazyColumnScreen()
+}
+
+@Composable
+fun LazyColumnScreen(modifier: Modifier = Modifier)
+{
+    val countries = remember { mutableStateListOf("USA","Canada","Australia") }
+    val context = LocalContext.current
+    var newCountry by remember { mutableStateOf("") }
+    Column(
+        modifier = modifier.padding(16.dp)
+    )
+    {
+        Text("List of Countries",
+            style = MaterialTheme.typography.bodyLarge)
+
+        OutlinedTextField(
+            value = newCountry,
+            onValueChange = {newCountry = it},
+            label = {Text("Add Country")},
+            modifier = Modifier.fillMaxWidth()
+        )
+        Button(
+            modifier = modifier.fillMaxWidth(),
+            onClick = {
+                if(newCountry.isNotEmpty())
+                {
+                    countries.add(newCountry)
+                    newCountry=""
+                }
+            }
+        ){
+            Text("Add")
+        }
+
+        LazyColumn {
+            items(countries.size) {
+                index -> Row(
+
+                modifier=Modifier.fillMaxWidth().padding(8.dp).clickable {
+
+//                    selectedCountry = countries[index]
+
+                    Toast.makeText(
+                        context,
+                        countries[index],
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
+                )
+            {
+                Text(
+                    countries[index],
+                    modifier=modifier.weight(1f)
+                )
+                Button(
+                    onClick = {
+                        countries.removeAt(index)
+                    }
+                ) {
+                   Icon(Icons.Default.Delete,"Delete")
+                }
+            }
+
+
+
             }
         }
     }
