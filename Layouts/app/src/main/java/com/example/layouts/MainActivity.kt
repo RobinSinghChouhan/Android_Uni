@@ -35,7 +35,7 @@ class MainActivity : ComponentActivity() {
         setContent {
             LayoutsTheme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    SeasonScreenPreview()
+                    SeasonScreen(modifier = Modifier.padding(innerPadding))
                 }
             }
         }
@@ -70,7 +70,7 @@ fun SeasonScreen(modifier: Modifier = Modifier)
 {
     val imgUrl = painterResource(R.drawable.seasons)
     Column(
-        modifier = modifier.fillMaxWidth().padding(top = 50.dp),
+        modifier = modifier.fillMaxWidth(),
         horizontalAlignment = Alignment.CenterHorizontally
     )
     {
@@ -79,21 +79,21 @@ fun SeasonScreen(modifier: Modifier = Modifier)
             shape = RoundedCornerShape(10.dp)
         ) {
             Text("Seasons and Months",
-                    modifier = modifier.padding(horizontal = 20.dp, vertical = 10.dp),
+                    modifier = Modifier.padding(horizontal = 20.dp, vertical = 10.dp),
                 fontSize = 24.sp)
         }
         Surface(
-            modifier = modifier.padding(top = 20.dp)
+            modifier = Modifier.padding(top = 20.dp)
         )
         {
             Image(
                 painter = imgUrl,
                 contentDescription = null,
-                modifier = modifier.padding(horizontal = 24.dp)
+                modifier = Modifier.padding(horizontal = 24.dp)
             )
         }
         Row(
-            modifier = modifier.fillMaxWidth().padding(top = 20.dp),
+            modifier = Modifier.fillMaxWidth().padding(top = 20.dp),
             horizontalArrangement = Arrangement.SpaceBetween
         ){
             SeasonBtn("Spring")
