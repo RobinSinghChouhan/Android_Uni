@@ -15,8 +15,10 @@
         <activity
             android:name=".MainActivity"
             android:exported="true"
+            android:configChanges="orientation|screenSize"
             android:label="@string/app_name"
-            android:theme="@style/Theme.TextFieldLab">
+            android:theme="@style/Theme.TextFieldLab"
+            tools:ignore="RedundantLabel">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
