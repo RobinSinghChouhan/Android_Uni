@@ -38,6 +38,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.sp
 
 class MainActivity : ComponentActivity() {
@@ -96,23 +97,23 @@ fun LazyColumnScreen(modifier: Modifier = Modifier)
 
         LazyColumn {
             items(countries.size) {
+
                 index -> Row(
-
-                modifier=Modifier.fillMaxWidth().padding(8.dp).clickable {
-
-//                    selectedCountry = countries[index]
-
+                modifier=Modifier.fillMaxSize().padding(8.dp).clickable {
                     Toast.makeText(
                         context,
                         countries[index],
                         Toast.LENGTH_SHORT
                     ).show()
-                }
+                },
+                    verticalAlignment = Alignment.CenterVertically
                 )
             {
+
                 Text(
                     countries[index],
-                    modifier=modifier.weight(1f)
+                    modifier=modifier.weight(1f).fillMaxSize(),
+                    textAlign = TextAlign.Start
                 )
                 Button(
                     onClick = {
@@ -122,9 +123,6 @@ fun LazyColumnScreen(modifier: Modifier = Modifier)
                    Icon(Icons.Default.Delete,"Delete")
                 }
             }
-
-
-
             }
         }
     }
