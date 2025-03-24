@@ -16,7 +16,7 @@ class CountViewModel : ViewModel(){
     }
 
     fun increment() {
-        count.value = count.value!!+1
+        count.value = count.value!! + 1
     }
 
     fun decrement() {

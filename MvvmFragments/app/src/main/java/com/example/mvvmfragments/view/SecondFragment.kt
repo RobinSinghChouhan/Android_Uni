@@ -1,5 +1,6 @@
 package com.example.mvvmfragments.view
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -33,6 +34,7 @@ class SecondFragment : Fragment() {
 
     }
 
+    @SuppressLint("SetTextI18n")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -40,9 +42,8 @@ class SecondFragment : Fragment() {
             findNavController().navigate(R.id.action_SecondFragment_to_FirstFragment)
         }
 
-
         countViewModel.getCountLiveData().observe(viewLifecycleOwner,{ set->
-            binding.textviewSecond.text = "Count: "+set
+            binding.textviewSecond.text = "Count: $set"
         })
 
         binding.decButton.setOnClickListener({
