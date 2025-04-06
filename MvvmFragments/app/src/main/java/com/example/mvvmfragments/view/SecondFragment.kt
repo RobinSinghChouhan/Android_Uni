@@ -45,7 +45,6 @@ class SecondFragment : Fragment() {
         countViewModel.getCountLiveData().observe(viewLifecycleOwner,{ set->
             binding.textviewSecond.text = "Count: $set"
         })
-
         binding.decButton.setOnClickListener({
             countViewModel.decrement()
         })
