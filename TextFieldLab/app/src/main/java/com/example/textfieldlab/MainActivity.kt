@@ -16,6 +16,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.DatePicker
 import androidx.compose.material3.DatePickerDialog
 import androidx.compose.material3.ElevatedButton
@@ -36,6 +37,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
@@ -56,8 +58,8 @@ class MainActivity : ComponentActivity() {
         setContent {
             TextFieldLabTheme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-//                    RandomNumberGenerator(modifier = Modifier.padding(innerPadding))
-                        DisplayDatePicker(modifier = Modifier.padding(innerPadding))
+                    RandomNumberGenerator(modifier = Modifier.padding(innerPadding))
+//                        DisplayDatePicker(modifier = Modifier.padding(innerPadding))
                 }
             }
         }
@@ -164,12 +166,17 @@ fun RandomNumberGenerator(modifier: Modifier = Modifier)
             onValueChange = {
                 maxi.value = it
             },
+//            colors = TextFieldColors,
             label = {Text("Max")}
         )
         Spacer(
             modifier = Modifier.height(30.dp)
         )
         ElevatedButton(
+            colors = ButtonDefaults.elevatedButtonColors(
+                containerColor = Color(0xFF6200EE), // Purple background
+                contentColor = Color.White // Text/icon color
+            ),
             onClick = {
                 try {
                     rnum.intValue = Random.nextInt(0, maxi.value.toInt())
