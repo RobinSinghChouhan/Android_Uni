@@ -58,8 +58,8 @@ class MainActivity : ComponentActivity() {
         setContent {
             TextFieldLabTheme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    RandomNumberGenerator(modifier = Modifier.padding(innerPadding))
-//                        DisplayDatePicker(modifier = Modifier.padding(innerPadding))
+//                    RandomNumberGenerator(modifier = Modifier.padding(innerPadding))
+                        DisplayDatePicker(modifier = Modifier.padding(innerPadding))
                 }
             }
         }
