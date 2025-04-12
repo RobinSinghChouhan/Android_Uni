@@ -166,7 +166,6 @@ fun RandomNumberGenerator(modifier: Modifier = Modifier)
             onValueChange = {
                 maxi.value = it
             },
-//            colors = TextFieldColors,
             label = {Text("Max")}
         )
         Spacer(
