@@ -23,10 +23,6 @@ class MainActivity : ComponentActivity() {
         setContent {
             AndroidRoomTheme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-//                    Greeting(
-//                        name = "Android",
-//                        modifier = Modifier.padding(innerPadding)
-//                    )
                      SubjectScreen(subjectViewModel = viewModel, modifier = Modifier.padding(innerPadding))
                 }
             }
