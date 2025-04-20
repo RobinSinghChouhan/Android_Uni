@@ -34,7 +34,6 @@ class FirstFragment : Fragment() {
 
     }
 
-    @SuppressLint("SetTextI18n")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -43,7 +42,7 @@ class FirstFragment : Fragment() {
         }
 
         countViewModel.getCountLiveData().observe(viewLifecycleOwner,{ set->
-            binding.textviewFirst.text = "Count: "+set
+            binding.textviewFirst.text = "Count: $set"
         })
 
         binding.incButton.setOnClickListener({
